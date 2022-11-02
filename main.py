@@ -85,13 +85,6 @@ class RastAlgorithms:
         x, y = x1, y1
         dx = abs(x2 - x1)
         dy = abs(y2 - y1)
-        gradient = dy / float(dx)
-
-        if gradient > 1:
-            dx, dy = dy, dx
-            x, y = y, x
-            x1, y1 = y1, x1
-            x2, y2 = y2, x2
 
         p = 2 * dy - dx
 
