@@ -155,24 +155,25 @@ class RastAlgorithms:
                 points.append([x1, y])
         else:
             grad = dy / dx
-            intery = y1 + _rfpart(x1) * grad
+            float_y = y1 + _rfpart(x1) * grad
 
-            def draw_endpoint(x, y):
-                xend = x
-                yend = y + grad * (xend - x)
-                px, py = int(xend), int(yend)
+            def compute_endpoint(a, b):
+                x_endpoint = a
+                y_endpoint = b + grad * (x_endpoint - a)
+                px, py = int(x_endpoint), int(y_endpoint)
                 points.append([px, py])
                 points.append([px, py + 1])
                 return px
 
-            x_start = draw_endpoint(x1, y1)
-            x_end = draw_endpoint(x2, y2)
+            x_start = compute_endpoint(x1, y1)
+            x_end = compute_endpoint(x2, y2)
 
             for x in range(x_start, x_end):
-                y = int(intery)
+                y = int(float_y)
                 points.append([x, y])
                 points.append([x, y + 1])
-                intery += grad
+                float_y += grad
+
         self.draw(points)
 
     def draw(self, coordinates):
